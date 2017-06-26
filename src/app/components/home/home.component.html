@@ -1,4 +1,4 @@
-<div style="text-align:center">
+<div>
   <h1>
     Home
   </h1>
@@ -6,7 +6,7 @@
 <div>
   <ul>
     <li *ngFor="let user of users | async">
-      {{user.username}}
+      {{user.fullname}}
     </li>
   </ul>
 </div>

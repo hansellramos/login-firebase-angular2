@@ -1,2 +1,12 @@
 <!--The whole content below can be removed with the new code.-->
+<div *ngIf="isAuthenticated">
+  <app-login-info [user]="user"></app-login-info>
+  <button (click)="logout()">Logout</button>
+</div>
+<div *ngIf="!isAuthenticated">
+  <app-login
+    (onLoginWithEmailAndPassword)="onLoginWithEmailAndPassword($event)"
+    (onLoginWithGoogle)="onLoginWithGoogle()"
+  ></app-login>
+</div>
 <app-home></app-home>
