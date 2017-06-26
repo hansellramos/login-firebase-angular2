@@ -1,0 +1,12 @@
+<div style="text-align:center">
+  <h1>
+    Home
+  </h1>
+</div>
+<div>
+  <ul>
+    <li *ngFor="let user of users | async">
+      {{user.username}}
+    </li>
+  </ul>
+</div>
