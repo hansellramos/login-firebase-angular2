@@ -1,25 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-
-import { FirebaseListObservable } from 'angularfire2/database';
-
-import { User } from '../../models/user';
-import { UserService } from '../../services/user.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
+import {UserService} from '../../services/user.service';
+import {User} from '../../models/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [ UserService ]
+  providers: [ ]
 })
+
 export class HomeComponent implements OnInit {
 
-  users: FirebaseListObservable<User[]>;
+  public user: User;
+  public isAuthenticated = false;
 
-  constructor(userService: UserService) {
-    this.users = userService.all();
-  }
+  constructor(
+    private authService: AuthService
+    , private userService: UserService
+    , private router: Router
+  ) { }
 
   ngOnInit() {
+    this.authService.afAuth.auth.onAuthStateChanged(user => {
+        this.isAuthenticated = !!user,
+          this.updateCurrentUserInfo();
+      }
+    );
+  }
+
+  public updateCurrentUserInfo() {
+    if (this.isAuthenticated) {
+      const user = this.authService.getCurrentUser();
+      this.userService.one(user.uid).subscribe(remoteUser => {
+        this.user = new User(remoteUser.email, remoteUser.fullname);
+      });
+    } else {
+      this.user = null;
+    }
+  }
+
+  public logout() {
+    this.authService.logout()
+      .then(() => {
+        this.router.navigate(['/login']);
+      });
   }
 
 }
