@@ -19,7 +19,8 @@ import { Error404Component } from './components/errors/error404/error404.compone
 import { Routing } from './app.routing';
 
 import { AuthService } from './services/auth.service';
-import {UserService} from './services/user.service';
+import { UserService } from './services/user.service';
+import { ProjectService } from './services/project.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {UserService} from './services/user.service';
   providers: [
       AuthService
     , UserService
+    , ProjectService
     , AuthGuard
   ],
   bootstrap: [ AppComponent ]
