@@ -17,6 +17,7 @@ export class ProjectService {
   }
 
   public one(uid: any): FirebaseObjectObservable<Project> {
+    console.log(this.ref + '/' + uid);
     return this.db.object(this.ref + '/' + uid);
   }
 

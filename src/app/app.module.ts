@@ -13,6 +13,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProjectNewComponent } from './components/project-new/project-new.component';
 import { RegisterComponent } from './components/register/register.component';
 import { Error404Component } from './components/errors/error404/error404.component';
 
@@ -21,6 +22,8 @@ import { Routing } from './app.routing';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { ProjectService } from './services/project.service';
+import { ProjectDetailComponent } from './components/project-detail/project-detail.component';
+import { CommonGoBackComponent } from './components/common/common-go-back/common-go-back.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { ProjectService } from './services/project.service';
     , HomeComponent
     , LoginComponent
     , RegisterComponent
-    , Error404Component
+    , ProjectNewComponent
+    , Error404Component, ProjectDetailComponent, CommonGoBackComponent
   ],
   imports: [
       BrowserModule

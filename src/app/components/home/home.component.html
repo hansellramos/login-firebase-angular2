@@ -8,7 +8,7 @@
     Home
   </h1>
   <div class="home-project-section">
-    <ul class="home-project-list" *ngIf="user.projects">
+    <ul class="home-project-list" *ngIf="user && user.projects">
       <li *ngFor="let project of user.projects">
         <a [routerLink]="['/project/',project.id]">
           <span *ngIf="!project.name" class="loading-info">loading project info...</span>
